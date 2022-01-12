@@ -8,3 +8,4 @@ BreakBeforeBraces: WebKit
 AllowShortBlocksOnASingleLine: Never
 AllowShortFunctionsOnASingleLine: None
 ColumnLimit: 0
+Standard: c++14

@@ -4,7 +4,5 @@
 int main()
 {
     while (true) {
-
     }
 }
-

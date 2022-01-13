@@ -1,1 +1,1 @@
-# spirit_target
+# spirit-target

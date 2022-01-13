@@ -1,4 +1,4 @@
-name: Build spirit_target
+name: Build spirit-target
 
 on:
   pull_request:

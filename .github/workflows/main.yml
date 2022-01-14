@@ -2,6 +2,9 @@ name: Build spirit-target
 
 on:
   pull_request:
+  push:
+    branches:
+      - main
 
 jobs:
   build-cli-v1:
@@ -43,3 +46,17 @@ jobs:
           set -e
           mbed-tools deploy
           mbed-tools compile -t GCC_ARM -m ${{ matrix.target }} --profile ${{ matrix.profile }}
+
+  build-make:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: build-make
+        run: |
+          set -e
+          sudo apt update
+          sudo apt full-upgrade
+          sudo apt install make gcc-arm-none-eabi
+          make

@@ -58,5 +58,9 @@ jobs:
           set -e
           sudo apt update
           sudo apt full-upgrade
-          sudo apt install make gcc-arm-none-eabi
+          sudo apt install make gcc-arm-none-eabi grep
+          git clone $(grep -oP "^.*(?=#)" mbed-os.lib)
+          cd mbed-os
+          git checkout $(grep -oP "(?<=#).*$" ../mbed-os.lib)
+          cd ..
           make

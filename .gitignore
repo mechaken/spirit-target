@@ -6,3 +6,6 @@ mbed-os
 BUILD
 .mbedbuild
 cmake_build/
+compile_commands.json
+.clangd
+.cache

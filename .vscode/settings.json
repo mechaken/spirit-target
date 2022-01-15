@@ -3,6 +3,7 @@
   "C_Cpp.addWorkspaceRootToIncludePath": false,
   "C_Cpp.intelliSenseEngine": "Tag Parser",
   "files.associations": {
+    "*.h": "cpp",
     "array": "cpp",
     "string": "cpp",
     "string_view": "cpp",

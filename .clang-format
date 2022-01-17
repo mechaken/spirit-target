@@ -8,4 +8,5 @@ BreakBeforeBraces: WebKit
 AllowShortBlocksOnASingleLine: Never
 AllowShortFunctionsOnASingleLine: None
 ColumnLimit: 120
+ReflowComments: false
 Standard: c++14

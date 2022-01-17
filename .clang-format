@@ -7,5 +7,5 @@ AlignConsecutiveMacros: Consecutive
 BreakBeforeBraces: WebKit
 AllowShortBlocksOnASingleLine: Never
 AllowShortFunctionsOnASingleLine: None
-ColumnLimit: 0
+ColumnLimit: 120
 Standard: c++14

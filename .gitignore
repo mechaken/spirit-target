@@ -9,3 +9,4 @@ cmake_build/
 compile_commands.json
 .clangd
 .cache
+spirit

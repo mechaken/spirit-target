@@ -39,7 +39,7 @@ int main()
     Motor target;
     Motor actual;
     A3921 a3921(PB_0, PA_6, PA_7, PB_1, PA_5);
-    MdLed led(PB_1, PA_5);
+    MdLed led(PA_10, PA_9);
 
     led = MdLed::Mode::Alternate;
 

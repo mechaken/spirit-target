@@ -1,25 +1,54 @@
-name: Run clang-format Linter
+name: Run Format Linter
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
   workflow_dispatch:
 
 jobs:
-  build:
+  format:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: DoozyX/clang-format-lint-action@v0.13
-      with:
-        clangFormatVersion: 12
-        inplace: True
-    - uses: EndBug/add-and-commit@v4
-      with:
-        author_name: Clang Robot
-        author_email: robot@example.com
-        message: 'Committing clang-format changes'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: update-package-lists
+        run: |
+          sudo apt-get update
+
+      - name: clnag-format
+        run: |
+          if [ -e .clang-format ]; then
+            echo ".clang-format exists."
+            sudo apt-get install clang-format-12
+            find -type f \
+              | ( grep '.*\.\(c\|cpp\|h\|hpp\)$' || true ) \
+              | while read file; do clang-format-12 -i -style=file "${file}"; done
+          else
+            echo ".clang-format not exists."
+          fi
+
+      - name: Astyle
+        run: |
+          if [ -e .astylerc ]; then
+            echo ".astylerc exists."
+            sudo apt-get install astyle
+            find -type f \
+              | ( grep '.*\.\(c\|cpp\|h\|hpp\)$' || true ) \
+              | while read file; do astyle -n --options=.astylerc "${file}"; done
+                      else
+          echo ".astylerc not exists."
+          fi
+
+      - name: Git commmit
+        uses: EndBug/add-and-commit@v4
+        with:
+          author_name: github-actions[bot]
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          message: "[update] format changes"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
